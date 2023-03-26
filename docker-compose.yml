@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  flask-app:
+    image: my-flask-app
+    ports:
+      - "5000:5000"
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "256M"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
+        tag: "my-flask-app"
+
+  fluentd:
+    image: fluent/fluentd:v1.14.2-debian-1.0
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+      - ./fluentd/log:/fluentd/log
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
