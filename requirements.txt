@@ -1,3 +1,4 @@
-Flask==2.1.0
-Flask-Limiter==1.5.0
-fluent-logger==0.10.0
+flask
+flask-Limiter
+fluent-logger
+
