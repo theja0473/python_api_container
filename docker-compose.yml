@@ -3,8 +3,7 @@ version: '3.7'
 services:
   flask-app:
     image: my-flask-app
-    ports:
-      - "5000:5000"
+    network-mode: "host"
     deploy:
       replicas: 3
       resources:
@@ -22,6 +21,4 @@ services:
     volumes:
       - ./fluentd/conf:/fluentd/etc
       - ./fluentd/log:/fluentd/log
-    ports:
-      - "24224:24224"
-      - "24224:24224/udp"
+    network-mode: "host"
